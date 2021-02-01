@@ -1,0 +1,5 @@
+{
+    "internal_server_error": "Something went wrong.",
+    "success_response": "Your request was successful.",
+    "failed_response": "Your request failed."
+}
