@@ -3,28 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\DataNotFound;
-use App\Http\Requests\CategoryRequest;
-use App\Http\Resources\CategoryCollection;
-use App\Http\Resources\CategoryResource;
+use App\Http\Requests\ArticleRequest;
+use App\Http\Resources\ArticleCollection;
+use App\Http\Resources\ArticleResource;
 use App\Http\Response;
-use App\Services\CategoryService;
+use App\Services\ArticleService;
 use App\Traits\Logger;
 use Exception;
 use Illuminate\Http\JsonResponse;
 
-class CategoryController extends Controller
+class ArticleController extends Controller
 {
     use Logger;
 
     /**
-     * @var CategoryService $service
+     * @var ArticleService $service
      */
-    private CategoryService $service;
+    private ArticleService $service;
 
     /**
-     * @param CategoryService $service
+     * @param ArticleService $service
      */
-    function __construct(CategoryService $service)
+    function __construct(ArticleService $service)
     {
         $this->service = $service;
     }
@@ -32,25 +32,65 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param CategoryRequest $request
+     * @param ArticleRequest $request
      *
      * @return JsonResponse
      */
-    public function create(CategoryRequest $request): JsonResponse
+    public function create(ArticleRequest $request): JsonResponse
     {
         $response = new Response();
         $attributes = $request->all();
-        $this->debug('Creating the category', $attributes);
+        $this->debug('Creating the article', $attributes);
 
         try {
 
-            $category = $this->service->create($attributes);
+            $article = $this->service->create($attributes);
 
-            return $response->success(new CategoryResource($category));
+            return $response->success(new ArticleResource($article));
 
         } catch (Exception $e) {
 
-            $this->error('Could not create the category', ['reason' => $e->getMessage()]);
+            $this->error('Could not create the article', ['reason' => $e->getMessage()]);
+            return $response->failed(500, __('internal_server_error'));
+
+        }
+    }
+
+    /**
+     * Update the specified resource from storage.
+     *
+     * @param string $id
+     * @param ArticleRequest $request
+     *
+     * @return JsonResponse
+     */
+    public function update(ArticleRequest $request, string $id): JsonResponse
+    {
+        $response = new Response();
+        $attributes = $request->all();
+
+        $this->debug('Updating the article', ['id' => $id, 'attributes' => $attributes]);
+
+        try {
+
+            $article = $this->service->update($id, $attributes);
+
+            return $response->success(new ArticleResource($article));
+
+        } catch (DataNotFound $e) {
+
+            $this->debug('Could not delete the article', [
+                'id' => $id,
+                'reason' => 'data_not_found',
+            ]);
+            return $response->failed(404);
+
+        } catch (Exception $e) {
+
+            $this->debug('Could not delete the article', [
+                'id' => $id,
+                'reason' => $e->getMessage(),
+            ]);
             return $response->failed(500, __('internal_server_error'));
 
         }
@@ -67,7 +107,7 @@ class CategoryController extends Controller
     {
         $response = new Response();
 
-        $this->debug('Deleting the category', ['id' => $id]);
+        $this->debug('Deleting the article', ['id' => $id]);
 
         try {
 
@@ -77,7 +117,7 @@ class CategoryController extends Controller
 
         } catch (DataNotFound $e) {
 
-            $this->debug('Could not delete the category', [
+            $this->debug('Could not delete the article', [
                 'id' => $id,
                 'reason' => 'data_not_found',
             ]);
@@ -85,47 +125,7 @@ class CategoryController extends Controller
 
         } catch (Exception $e) {
 
-            $this->debug('Could not delete the category', [
-                'id' => $id,
-                'reason' => $e->getMessage(),
-            ]);
-            return $response->failed(500, __('internal_server_error'));
-
-        }
-    }
-
-    /**
-     * Update the specified resource from storage.
-     *
-     * @param string $id
-     * @param CategoryRequest $request
-     *
-     * @return JsonResponse
-     */
-    public function update(CategoryRequest $request, string $id): JsonResponse
-    {
-        $response = new Response();
-        $attributes = $request->all();
-
-        $this->debug('Updating the category', ['id' => $id, 'attributes' => $attributes]);
-
-        try {
-
-            $category = $this->service->update($id, $attributes);
-
-            return $response->success(new CategoryResource($category));
-
-        } catch (DataNotFound $e) {
-
-            $this->debug('Could not delete the category', [
-                'id' => $id,
-                'reason' => 'data_not_found',
-            ]);
-            return $response->failed(404);
-
-        } catch (Exception $e) {
-
-            $this->debug('Could not delete the category', [
+            $this->debug('Could not delete the article', [
                 'id' => $id,
                 'reason' => $e->getMessage(),
             ]);
@@ -142,17 +142,17 @@ class CategoryController extends Controller
     public function list(): JsonResponse
     {
         $response = new Response();
-        $this->debug('Getting the list of categories');
+        $this->debug('Getting the list of articles');
 
         try {
 
-            $categories = $this->service->list();
+            $articles = $this->service->list();
 
-            return $response->success(new CategoryCollection($categories));
+            return $response->success(new ArticleCollection($articles));
 
         } catch (Exception $e) {
 
-            $this->debug('Could not get the list of categories', [
+            $this->debug('Could not get the list of articles', [
                 'reason' => $e->getMessage(),
             ]);
             return $response->failed(500, __('internal_server_error'));
@@ -170,17 +170,17 @@ class CategoryController extends Controller
     public function get(string $id): JsonResponse
     {
         $response = new Response();
-        $this->debug('Getting the specified category');
+        $this->debug('Getting the specified article');
 
         try {
 
-            $category = $this->service->get($id);
+            $article = $this->service->get($id);
 
-            return $response->success(new CategoryResource($category));
+            return $response->success(new ArticleResource($article));
 
         } catch (DataNotFound $e) {
 
-            $this->debug('Could not get the specified of category', [
+            $this->debug('Could not get the specified of article', [
                 'id' => $id,
                 'reason' => 'data_not_found',
             ]);
@@ -188,7 +188,7 @@ class CategoryController extends Controller
 
         } catch (Exception $e) {
 
-            $this->debug('Could not get the specified of category', [
+            $this->debug('Could not get the specified of article', [
                 'id' => $id,
                 'reason' => $e->getMessage(),
             ]);

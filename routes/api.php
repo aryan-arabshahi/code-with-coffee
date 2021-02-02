@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,11 +20,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->group(function () {
 
     Route::prefix('/categories')->group(function () {
-        Route::get('/', [CategoryController::class, 'list'])->name('categories.list');
         Route::post('/', [CategoryController::class, 'create'])->name('categories.create');
+        Route::get('/', [CategoryController::class, 'list'])->name('categories.list');
         Route::delete('/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
         Route::patch('/{id}', [CategoryController::class, 'update'])->name('categories.update');
         Route::get('/{id}', [CategoryController::class, 'get'])->name('categories.get');
+    });
+
+    Route::prefix('/articles')->group(function () {
+        Route::post('/', [ArticleController::class, 'create'])->name('articles.create');
+        Route::patch('/{id}', [ArticleController::class, 'update'])->name('articles.update');
+        Route::get('/', [ArticleController::class, 'list'])->name('articles.list');
+        Route::delete('/{id}', [ArticleController::class, 'delete'])->name('articles.delete');
+        Route::get('/{id}', [ArticleController::class, 'get'])->name('articles.get');
     });
 
 });

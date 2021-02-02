@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Interfaces\ArticleRepositoryInterface;
 use App\Interfaces\CategoryRepositoryInterface;
 use App\Interfaces\EloquentRepositoryInterface;
+use App\Repositories\Eloquent\ArticleRepository;
 use App\Repositories\Eloquent\BaseRepository;
 use App\Repositories\Eloquent\CategoryRepository;
 use Illuminate\Support\ServiceProvider;
@@ -19,6 +21,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
        $this->app->bind(EloquentRepositoryInterface::class, BaseRepository::class);
        $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
+       $this->app->bind(ArticleRepositoryInterface::class, ArticleRepository::class);
     }
 
 }

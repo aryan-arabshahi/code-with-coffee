@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\ArticleStatus;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCategoryRequest extends FormRequest
+class ArticleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +26,10 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => "required|string|min:2|max:60|unique:categories,name,$this->id,id",
+            'name' => "required|string|min:2|max:60|unique:articles,name,$this->id,id,category_id,$this->category_id",
+            'category_id' => 'required|integer|exists:categories,id',
+            'content' => 'required|string',
+            'status' => ['required', 'string', Rule::in(ArticleStatus::getValues())],
         ];
     }
 }
