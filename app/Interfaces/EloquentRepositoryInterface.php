@@ -19,17 +19,19 @@ interface EloquentRepositoryInterface
      * @param string $id
      * 
      * @return Model
+     * @param array $with = [] The list of relations
      * 
      * @throws DataNotFound
      */
-    public function get(string $id): Model;
+    public function get(string $id, array $with = []): Model;
 
     /**
      * @param int $paginate = 0 Zero means without pagination
+     * @param array $with = [] The list of relations
      * 
      * @return \Illuminate\Pagination\LengthAwarePaginator|Collection
      */
-    public function list(int $paginate = 0): mixed;
+    public function list(int $paginate = 0, array $with = []): mixed;
 
     /**
      * @param string $id

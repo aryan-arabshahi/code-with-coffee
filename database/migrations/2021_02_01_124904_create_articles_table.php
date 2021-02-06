@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
             $table->char('name', 60)->index();
             $table->foreignId('category_id');
             $table->longText('content');
+            $table->longText('cover')->nullable();
             $table->char('status', 20)->default(ArticleStatus::PENDING)->index();
 
             $table->foreign('category_id')

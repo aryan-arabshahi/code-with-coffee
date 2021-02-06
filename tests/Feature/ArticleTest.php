@@ -17,7 +17,9 @@ class ArticleTest extends BaseTest
     {
         $response = $this->postJson(
             route('articles.create'),
-            Article::factory()->make()->toArray()
+            Article::factory()->make([
+                'cover' => $this->fakeImage(),
+            ])->toArray()
         );
         $response->assertStatus(200);
     }
@@ -32,7 +34,9 @@ class ArticleTest extends BaseTest
         $article = Article::factory()->create();
         $response = $this->patchJson(
             route('articles.update', [$article->id]),
-            Article::factory()->make()->toArray()
+            Article::factory()->make([
+                'cover' => $this->fakeImage(),
+            ])->toArray()
         );
         $response->assertStatus(200);
     }
@@ -46,7 +50,7 @@ class ArticleTest extends BaseTest
     {
         $response = $this->patchJson(
             route('articles.update', [-1]),
-            Article::factory()->make()->toArray()
+            Article::factory()->make(['cover' => null])->toArray()
         );
         $response->assertStatus(404);
     }

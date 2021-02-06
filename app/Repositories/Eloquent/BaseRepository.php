@@ -17,9 +17,15 @@ class BaseRepository implements EloquentRepositoryInterface
      */
     protected Model $model;
 
+    /**
+     * @var int $paginatePerPage
+     */
+    protected int $paginatePerPage;
+
     function __construct(Model $model)
     {
         $this->model = $model;
+        $this->paginatePerPage = config('pagination.per_page');
     }
 
     /**
@@ -35,34 +41,37 @@ class BaseRepository implements EloquentRepositoryInterface
 
     /**
      * @param string $id
+     * @param array $with = [] The list of relations
      * 
      * @return Model
      * 
      * @throws DataNotFound
      */
-    public function get(string $id): Model
+    public function get(string $id, array $with = []): Model
     {
-        $this->debug('Getting the resource', ['id' => $id]);
-        $data = $this->model->find($id);
-        if (!$data) {
+        $this->debug('Getting the resource', ['id' => $id, 'with' => $with]);
+        $result = $this->withRelations($with)->find($id);
+        if (!$result) {
             $this->debug('Could not find the resource', ['id' => $id]);
             throw new DataNotFound();
         }
-        return $data;
+        return $result;
     }
 
     /**
      * @param int $paginate = 0 Zero means without pagination
+     * @param array $with = [] The list of relations
      * 
      * @return \Illuminate\Pagination\LengthAwarePaginator|Collection
      */
-    public function list(int $paginate = 0): mixed
+    public function list(int $paginate = 0, array $with = []): mixed
     {
         if ($paginate === 0) {
-            $paginate = config('pagination.per_page');
+            $paginate = $this->paginatePerPage;
         }
-        $this->debug('Getting the list of resources');
-        return ($paginate > 0) ? $this->model->paginate($paginate) : $this->model->get();
+        $this->debug('Getting the list of resources', ['with' => $with]);
+
+        return ($paginate > 0) ? $this->withRelations($with)->paginate($paginate) : $this->withRelations($with)->get();
     }
 
     /**
@@ -93,6 +102,18 @@ class BaseRepository implements EloquentRepositoryInterface
         $data = $this->get($id);
         $data->update($attributes);
         return $data;
+    }
+
+    /**
+     * Adding relations
+     * 
+     * @param array $relations
+     * 
+     * @return mixed
+     */
+    private function withRelations(array $relations): mixed
+    {
+        return ($relations) ? $this->model->with($relations) : $this->model;
     }
 
 }
