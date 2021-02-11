@@ -74,8 +74,7 @@ class ArticleTest extends BaseTest
     public function test_get_article()
     {
         $article = Article::factory()->create();
-        // $response = $this->getJson(route('articles.get', [$article->id]));
-        $response = $this->getJson(route('articles.get', [1]));
+        $response = $this->getJson(route('articles.get', [$article->id]));
         $response->assertStatus(200);
     }
 
