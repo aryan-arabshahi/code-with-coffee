@@ -27,8 +27,9 @@ class ArticleFactory extends Factory
             'name' => $this->faker->name,
             'category_id' => Category::factory(),
             'content' => $this->faker->realText,
+            'description' => $this->faker->realText(255),
             'status' => ArticleStatus::ENABLED,
-            'cover' => $this->faker->imageUrl(),
+            'image' => $this->faker->imageUrl(),
         ];
     }
 }

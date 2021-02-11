@@ -3,17 +3,23 @@
 namespace App\Services;
 
 use App\Interfaces\ArticleRepositoryInterface;
+use App\Traits\HasImage;
 use App\Traits\Logger;
 use Illuminate\Http\UploadedFile;
 
 class ArticleService
 {
-    use Logger;
+    use Logger, HasImage;
 
     /**
      * @var ArticleRepositoryInterface $repository
      */
     private ArticleRepositoryInterface $repository;
+
+    /**
+     * The module name used in the HasImage trait
+     */
+    protected $module = 'articles';
 
     function __construct(ArticleRepositoryInterface $repository)
     {
@@ -24,22 +30,22 @@ class ArticleService
      * Create a article
      * 
      * @param array $attributes
-     * @param null|UploadedFile $cover = null
+     * @param null|UploadedFile $image = null
      * @param bool $toArray = false
      * 
      * @return mixed
      */
     public function create(
         array $attributes,
-        null|UploadedFile $cover = null,
+        null|UploadedFile $image = null,
         bool $toArray = false
     ): mixed
     {
         $this->debug('Creating the article', $attributes);
 
         // Store the uploaded image
-        if ($cover) {
-            $attributes['cover'] = $cover->store(config('storage.articles.images'));
+        if ($image) {
+            $attributes['image'] = $this->storeImage($image);
         }
 
         $article = $this->repository->create($attributes);
@@ -80,7 +86,7 @@ class ArticleService
      * 
      * @param string $id
      * @param array $attributes
-     * @param null|UploadedFile $cover = null
+     * @param null|UploadedFile $image = null
      * @param bool $toArray = false
      * 
      * @return mixed
@@ -88,15 +94,15 @@ class ArticleService
     public function update(
         string $id,
         array $attributes,
-        null|UploadedFile $cover = null,
+        null|UploadedFile $image = null,
         bool $toArray = false
     ): mixed
     {
         $this->debug('Updating the article', ['id' => $id, 'attributes' => $attributes]);
 
         // Replace the uploaded image
-        if ($cover) {
-            $attributes['cover'] = $cover->store(config('storage.articles.images'));
+        if ($image) {
+            $attributes['image'] = $this->storeImage($image);
         }
 
         $article = $this->repository->update($id, $attributes);

@@ -19,7 +19,8 @@ class CreateArticlesTable extends Migration
             $table->char('name', 60)->index();
             $table->foreignId('category_id');
             $table->longText('content');
-            $table->longText('cover')->nullable();
+            $table->char('description')->index();
+            $table->longText('image')->nullable();
             $table->char('status', 20)->default(ArticleStatus::PENDING)->index();
 
             $table->foreign('category_id')
@@ -28,7 +29,7 @@ class CreateArticlesTable extends Migration
                 ->onDelete('cascade');
 
             $table->timestamps();
-            $table->index(['name', 'status']);
+            $table->index(['name', 'status', 'description']);
         });
     }
 

@@ -30,7 +30,28 @@ class ArticleRequest extends FormRequest
             'category_id' => 'required|integer|exists:categories,id',
             'content' => 'required|string',
             'status' => ['required', 'string', Rule::in(ArticleStatus::getValues())],
-            'cover' => 'nullable|image|mimes:jpg,png',
+            'description' => 'required|string|max:255',
+            'image' => $this->getImageRules(),
         ];
     }
+
+    /**
+     * Get the image rules based on the route
+     */
+    private function getImageRules(): array
+    {
+        $image_rules = [
+            'image',
+            'mimes:jpg,png',
+        ];
+        array_unshift(
+            $image_rules,
+            ($this->route()->getName() === 'articles.create') ?
+                'required'
+            :
+                'nullable'
+        );
+        return $image_rules;
+    }
+
 }

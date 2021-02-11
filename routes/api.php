@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\StorageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +38,6 @@ Route::middleware('auth:api')->group(function () {
 
 });
 
+Route::prefix('/storage')->group(function () {
+    Route::get('/{module}/image/{id}/{name?}', [StorageController::class, 'getImage'])->name('storage.getImage');
+});

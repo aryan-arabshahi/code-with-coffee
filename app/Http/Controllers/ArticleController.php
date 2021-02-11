@@ -39,12 +39,12 @@ class ArticleController extends Controller
     public function create(ArticleRequest $request): JsonResponse
     {
         $response = new Response();
-        $attributes = $request->except('cover');
+        $attributes = $request->except('image');
         $this->debug('Creating the article', $attributes);
 
         try {
 
-            $article = $this->service->create($attributes, $request->cover);
+            $article = $this->service->create($attributes, $request->image);
 
             return $response->success(new ArticleResource($article));
 
@@ -67,13 +67,13 @@ class ArticleController extends Controller
     public function update(ArticleRequest $request, string $id): JsonResponse
     {
         $response = new Response();
-        $attributes = $request->except('cover');
+        $attributes = $request->except('image');
 
         $this->debug('Updating the article', ['id' => $id, 'attributes' => $attributes]);
 
         try {
 
-            $article = $this->service->update($id, $attributes, $request->cover);
+            $article = $this->service->update($id, $attributes, $request->image);
 
             return $response->success(new ArticleResource($article));
 
