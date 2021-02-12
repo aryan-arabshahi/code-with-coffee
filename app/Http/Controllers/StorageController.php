@@ -25,7 +25,7 @@ class StorageController extends Controller
 
             $source = $service->get($id);
 
-            if (!$source->image) {
+            if (!$source->image OR !Storage::exists($source->image)) {
                 throw new DataNotFound;
             }
 

@@ -40,6 +40,7 @@ class ArticleController extends Controller
     {
         $response = new Response();
         $attributes = $request->except('image');
+
         $this->debug('Creating the article', $attributes);
 
         try {

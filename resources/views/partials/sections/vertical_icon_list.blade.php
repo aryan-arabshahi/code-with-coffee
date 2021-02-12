@@ -35,7 +35,7 @@
                     </p>
                 </article>
             </div>
-            <div class="flex mt-4 bg-white rounded shadow-lg shadow-red border p-2">
+            <div class="flex mt-4 bg-white rounded shadow-lg shadow-red border p-2 relative">
                 <div class="h-24 w-1/4 flex">
                     <img class="block justify-center items-center m-auto w-16" src="/assets/images/python-logo.svg">
                 </div>
@@ -45,8 +45,13 @@
                         A helper tool for the system administrators. The SSL checker, Notifier, and some other helper tools.
                     </p>
                 </article>
+                <div style="background: rgba(255,255,255,0.85);" class="absolute left-0 right-0 top-0 bottom-0 rounded">
+                    <div class="flex h-full items-center justify-center text-xl text-gray-desc">
+                        Coming Soon...
+                    </div>
+                </div>
             </div>
-            <div class="flex mt-4 bg-white rounded shadow-lg shadow-red border p-2">
+            <div class="flex mt-4 bg-white rounded shadow-lg shadow-red border p-2 relative">
                 <div class="h-24 w-1/4 flex">
                     <div class="m-auto">
                         <svg width="89" height="32" viewBox="0 0 89 32" xmlns="http://www.w3.org/2000/svg">
@@ -55,7 +60,6 @@
                             </g>
                         </svg>
                     </div>
-
                 </div>
                 <article class="w-3/4 pr-4">
                     <h1 class="font-medium my-2">Rundo</h3>
@@ -63,6 +67,11 @@
                         A simple multiplayer game using the WebSocket with Python as the socket server.
                     </p>
                 </article>
+                <div style="background: rgba(255,255,255,0.85);" class="absolute left-0 right-0 top-0 bottom-0 rounded">
+                    <div class="flex h-full items-center justify-center text-xl text-gray-desc">
+                        Coming Soon...
+                    </div>
+                </div>
             </div>
         </div>
     </div>

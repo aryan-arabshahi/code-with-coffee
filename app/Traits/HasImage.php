@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Illuminate\Http\UploadedFile;
+use Storage;
 
 trait HasImage
 {
@@ -50,7 +51,7 @@ trait HasImage
     }
 
     /**
-     * Store the specied image
+     * Store the specified image
      * 
      * @param UploadedFile $file
      * 
@@ -59,6 +60,21 @@ trait HasImage
     public function storeImage(UploadedFile $file): string
     {
         return $file->store(storage_image_path($this->module));
+    }
+
+    /**
+     * Remove the specified image
+     * 
+     * @param null|string $filePath The storage path of the file
+     * 
+     * @return void
+     */
+    public function removeImage(null|string $filePath): bool
+    {
+        return ($filePath AND Storage::exists($filePath)) ?
+            Storage::delete($filePath)
+        :
+            true;
     }
 
 }

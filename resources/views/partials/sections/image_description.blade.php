@@ -9,7 +9,7 @@
                 I'm Aryan Arabshahi.<br/>
                 I born on 28 of April 1991. I studied mechanical engineering at university but the truth is that physics was a little bit boring to me. So, I drank my cup of coffee and start to code and the story has begun...<br/>
                 I'm a full-time programmer since 2013 and worked on various projects for various companies.<br/>
-                I'm a full-stack developer but I worked as a back-end developer more.
+                I'm a full-stack developer but I worked as a back-end developer more than everything.
             </p>
         </div>
         <div class="flex justify-center">

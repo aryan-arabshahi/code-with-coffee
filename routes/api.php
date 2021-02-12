@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\StorageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,14 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/', [ArticleController::class, 'list'])->name('articles.list');
         Route::delete('/{id}', [ArticleController::class, 'delete'])->name('articles.delete');
         Route::get('/{id}', [ArticleController::class, 'get'])->name('articles.get');
+    });
+
+    Route::prefix('/pages')->group(function () {
+        Route::post('/', [PageController::class, 'create'])->name('pages.create');
+        Route::patch('/{id}', [PageController::class, 'update'])->name('pages.update');
+        Route::get('/', [PageController::class, 'list'])->name('pages.list');
+        Route::get('/{id}', [PageController::class, 'get'])->name('pages.get');
+        Route::delete('/{id}', [PageController::class, 'delete'])->name('pages.delete');
     });
 
 });

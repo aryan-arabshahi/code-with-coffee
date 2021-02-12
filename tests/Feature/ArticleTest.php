@@ -67,7 +67,7 @@ class ArticleTest extends BaseTest
     }
 
     /**
-     * Delete the specified article.
+     * Get the specified article.
      *
      * @return void
      */
@@ -79,7 +79,7 @@ class ArticleTest extends BaseTest
     }
 
     /**
-     * Delete the specified article.
+     * Get the specified article.
      *
      * @return void
      */

@@ -3,19 +3,11 @@
 namespace App\Observers;
 
 use App\Models\Article;
+use App\Traits\Logger;
 
 class ArticleObserver
 {
-    /**
-     * Handle the Article "created" event.
-     *
-     * @param  \App\Models\Article  $article
-     * @return void
-     */
-    public function created(Article $article)
-    {
-        //
-    }
+    use Logger;
 
     /**
      * Handle the Article "updated" event.
@@ -25,7 +17,12 @@ class ArticleObserver
      */
     public function updated(Article $article)
     {
-        //
+        $image = $article->getOriginal('image');
+        $this->debug('Removing the image', [
+            'module' => $article->module,
+            'image' => $image,
+        ]);
+        $article->removeImage($image);
     }
 
     /**
@@ -36,28 +33,12 @@ class ArticleObserver
      */
     public function deleted(Article $article)
     {
-        //
+        $image = $article->image;
+        $this->debug('Removing the image', [
+            'module' => $article->module,
+            'image' => $image,
+        ]);
+        $article->removeImage($image);
     }
 
-    /**
-     * Handle the Article "restored" event.
-     *
-     * @param  \App\Models\Article  $article
-     * @return void
-     */
-    public function restored(Article $article)
-    {
-        //
-    }
-
-    /**
-     * Handle the Article "force deleted" event.
-     *
-     * @param  \App\Models\Article  $article
-     * @return void
-     */
-    public function forceDeleted(Article $article)
-    {
-        //
-    }
 }
