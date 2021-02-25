@@ -77,4 +77,12 @@ trait HasImage
             true;
     }
 
+    /**
+     * Get the module name
+     */
+    public function getModuleName(): string
+    {
+        return $this->module;
+    }
+
 }

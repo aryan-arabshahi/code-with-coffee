@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.index')
 
 @section('styles')
     <link rel="stylesheet" href="/assets/js/owlcarousel/owl.carousel.min.css">

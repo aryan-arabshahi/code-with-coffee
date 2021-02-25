@@ -18,3 +18,17 @@ if (!function_exists('storage_image_path')) {
         return implode('/', $path);
     }
 }
+
+if (!function_exists('generate_slug')) {
+    function generate_slug($value)
+    {
+        return \Str::slug($value, '-');
+    }
+}
+
+if (!function_exists('humanize_date')) {
+    function humanize_date($date, $format = 'F d, Y')
+    {
+        return $date->format($format);
+    }
+}

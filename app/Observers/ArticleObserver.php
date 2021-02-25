@@ -13,16 +13,17 @@ class ArticleObserver
      * Handle the Article "updated" event.
      *
      * @param  \App\Models\Article  $article
-     * @return void
      */
     public function updated(Article $article)
     {
-        $image = $article->getOriginal('image');
+        $original_image = $article->getOriginal('image');
+        // Checking the image change
+        if ($original_image == $article->image) { return; }
         $this->debug('Removing the image', [
-            'module' => $article->module,
-            'image' => $image,
+            'module' => $article->getModuleName(),
+            'image' => $original_image,
         ]);
-        $article->removeImage($image);
+        $article->removeImage($original_image);
     }
 
     /**
@@ -35,7 +36,7 @@ class ArticleObserver
     {
         $image = $article->image;
         $this->debug('Removing the image', [
-            'module' => $article->module,
+            'module' => $article->getModuleName(),
             'image' => $image,
         ]);
         $article->removeImage($image);

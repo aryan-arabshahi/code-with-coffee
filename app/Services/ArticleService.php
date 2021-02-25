@@ -2,10 +2,14 @@
 
 namespace App\Services;
 
-use App\Interfaces\ArticleRepositoryInterface;
-use App\Traits\HasImage;
 use App\Traits\Logger;
+use App\Traits\HasImage;
+use App\Enums\ArticleStatus;
+use App\Exceptions\DataNotFound;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Database\Eloquent\Model;
+use App\Interfaces\ArticleRepositoryInterface;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ArticleService
 {
@@ -47,6 +51,9 @@ class ArticleService
         if ($image) {
             $attributes['image'] = $this->storeImage($image);
         }
+
+        // Setting up the slug based on the name
+        $attributes['slug'] = generate_slug($attributes['name']);
 
         $article = $this->repository->create($attributes);
         return (!$toArray) ? $article : $article->toArray();
@@ -105,6 +112,9 @@ class ArticleService
             $attributes['image'] = $this->storeImage($image);
         }
 
+        // Setting up the slug based on the name
+        $attributes['slug'] = generate_slug($attributes['name']);
+
         $article = $this->repository->update($id, $attributes);
         return (!$toArray) ? $article : $article->toArray();
     }
@@ -124,6 +134,55 @@ class ArticleService
         $this->debug('Getting the article', ['id' => $id]);
         $article = $this->repository->get($id, with: ['category']);
         return (!$toArray) ? $article : $article->toArray();
+    }
+
+    /**
+     * Get the latest articles
+     * 
+     * @param int $count Count of the latest items
+     * @param bool $toArray = false
+     * 
+     * @return array|Collection
+     */
+    public function latest(int $count, bool $toArray = false): mixed
+    {
+        $this->debug('Getting the latest articles', ['count' => $count]);
+        $articles = $this->repository->latest($count);
+        return (!$toArray) ? $articles : $articles->toArray();
+    }
+
+    /**
+     * Get an article by slug
+     * 
+     * @param string $slug
+     * 
+     * @return Model
+     * 
+     * @throws DataNotFound
+     */
+    public function findBySlug(string $slug): Model
+    {
+        $this->debug('Getting the specified article', ['slug' => $slug]);
+        $article = $this->repository->findBySlug($slug);
+
+        if ($article->status != ArticleStatus::ENABLED) {
+            throw new DataNotFound;
+        }
+
+        return $article;
+    }
+
+    /**
+     * Get the list of the enabled articles
+     * 
+     * @param int $paginatePerPage = 0 Use the default pagination as default
+     * 
+     * @return LengthAwarePaginator
+     */
+    public function listActiveArticles(int $paginatePerPage = 0): LengthAwarePaginator
+    {
+        $this->debug('Getting the list of the enabled articles');
+        return $this->repository->listActiveArticles($paginatePerPage);
     }
 
 }

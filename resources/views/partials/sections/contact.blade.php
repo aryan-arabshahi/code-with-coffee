@@ -1,5 +1,5 @@
 <section class="container relative m-auto py-10 mt-10">
-    <h2 class="text-4xl text-center font-medium">Contact Me</h3>
+    <h2 class="text-4xl text-center font-medium">Contact Me</h2>
     <div class="px-32 mt-10">
         <div class="grid grid-cols-6 gap-4">
             <div class="relative col-start-2 col-span-4 px-20">

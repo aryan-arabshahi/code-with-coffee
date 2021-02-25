@@ -22,8 +22,10 @@ class PageFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->name;
         return [
-            'name' => $this->faker->name,
+            'name' => $name,
+            'slug' => generate_slug($name),
             'content' => $this->faker->realText,
             'description' => $this->faker->realText(255),
             'status' => PageStatus::ENABLED,

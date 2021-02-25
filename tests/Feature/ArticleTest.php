@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Article;
+use App\Services\ArticleService;
 use Tests\BaseTest;
 
 class ArticleTest extends BaseTest
@@ -110,6 +111,43 @@ class ArticleTest extends BaseTest
     {
         $response = $this->deleteJson(route('articles.delete', [-1]));
         $response->assertStatus(404);
+    }
+
+    /**
+     * Get the latest articles.
+     *
+     * @return void
+     */
+    public function test_get_latest_articles()
+    {
+        $service = app(ArticleService::class);
+        $service->latest(3);
+        $this->assertTrue(true);
+    }
+
+    /**
+     * Get article by slug
+     *
+     * @return void
+     */
+    public function test_get_article_by_slug()
+    {
+        $article = Article::factory()->create();
+        $service = app(ArticleService::class);
+        $finded_article = $service->findBySlug($article->slug);
+        $this->assertTrue(true);
+    }
+
+    /**
+     * Get the list of the enabled articles
+     *
+     * @return void
+     */
+    public function test_list_active_articles()
+    {
+        $service = app(ArticleService::class);
+        $finded_article = $service->listActiveArticles();
+        $this->assertTrue(true);
     }
 
 }

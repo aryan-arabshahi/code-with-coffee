@@ -23,8 +23,10 @@ class ArticleFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->name;
         return [
-            'name' => $this->faker->name,
+            'name' => $name,
+            'slug' => generate_slug($name),
             'category_id' => Category::factory(),
             'content' => $this->faker->realText,
             'description' => $this->faker->realText(255),

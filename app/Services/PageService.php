@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
-use App\Interfaces\PageRepositoryInterface;
 use App\Traits\Logger;
+use App\Enums\PageStatus;
+use App\Exceptions\DataNotFound;
+use App\Interfaces\PageRepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
 
 class PageService
 {
@@ -30,6 +33,10 @@ class PageService
     public function create(array $attributes, bool $toArray = false): mixed
     {
         $this->debug('Creating the page', $attributes);
+
+        // Setting up the slug based on the name
+        $attributes['slug'] = generate_slug($attributes['name']);
+
         $page = $this->repository->create($attributes);
         return (!$toArray) ? $page : $page->toArray();
     }
@@ -46,6 +53,10 @@ class PageService
     public function update(string $id, array $attributes, bool $toArray = false): mixed
     {
         $this->debug('Updating the page', ['id' => $id, 'attributes' => $attributes]);
+
+        // Setting up the slug based on the name
+        $attributes['slug'] = generate_slug($attributes['name']);
+
         $page = $this->repository->update($id, $attributes);
         return (!$toArray) ? $page : $page->toArray();
     }
@@ -94,6 +105,27 @@ class PageService
     {
         $this->debug('Deleting the page', ['id' => $id]);
         $this->repository->delete($id);
+    }
+
+    /**
+     * Get a page by slug
+     * 
+     * @param string $slug
+     * 
+     * @return Model
+     * 
+     * @throws DataNotFound
+     */
+    public function findBySlug(string $slug): Model
+    {
+        $this->debug('Getting the specified page', ['slug' => $slug]);
+        $article = $this->repository->findBySlug($slug);
+
+        if ($article->status != PageStatus::ENABLED) {
+            throw new DataNotFound;
+        }
+
+        return $article;
     }
 
 }

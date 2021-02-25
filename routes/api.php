@@ -48,5 +48,8 @@ Route::middleware('auth:api')->group(function () {
 });
 
 Route::prefix('/storage')->group(function () {
-    Route::get('/{module}/image/{id}/{name?}', [StorageController::class, 'getImage'])->name('storage.getImage');
+    Route::get(
+        '/{module}/image/{id}/{name?}/{width?}/{height?}',
+        [StorageController::class, 'getImage']
+    )->name('storage.getImage');
 });

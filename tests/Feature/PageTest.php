@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Page;
+use App\Services\PageService;
 use Tests\BaseTest;
 
 class PageTest extends BaseTest
@@ -108,6 +109,19 @@ class PageTest extends BaseTest
     {
         $response = $this->deleteJson(route('pages.delete', [-1]));
         $response->assertStatus(404);
+    }
+
+    /**
+     * Get page by slug
+     *
+     * @return void
+     */
+    public function test_get_page_by_slug()
+    {
+        $page = Page::factory()->create();
+        $service = app(PageService::class);
+        $finded_page = $service->findBySlug($page->slug);
+        $this->assertTrue(true);
     }
 
 }
