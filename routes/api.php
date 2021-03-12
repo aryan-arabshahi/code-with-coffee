@@ -4,6 +4,8 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\StorageController;
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+/**
+ * Guarded Routes
+ */
 Route::middleware('auth:api')->group(function () {
 
     Route::prefix('/categories')->group(function () {
@@ -45,6 +49,27 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}', [PageController::class, 'delete'])->name('pages.delete');
     });
 
+    Route::prefix('/subscribers')->group(function () {
+        Route::get('/', [SubscriptionController::class, 'getSubscribers'])->name('subscribers.list');
+    });
+
+    Route::prefix('/tickets')->group(function () {
+        Route::get('/', [TicketController::class, 'list'])->name('tickets.list');
+        Route::get('/{id}', [TicketController::class, 'get'])->name('tickets.get');
+        Route::delete('/{id}', [TicketController::class, 'delete'])->name('tickets.delete');
+    });
+
+});
+
+
+/**
+ * Public Routes
+ */
+
+Route::prefix('/newsletter')->group(function () {
+    Route::post('/subscribe', [SubscriptionController::class, 'postSubscribe'])
+        ->name('newsletter.subscribe')
+        ->middleware('throttle:6,1');
 });
 
 Route::prefix('/storage')->group(function () {
@@ -53,3 +78,7 @@ Route::prefix('/storage')->group(function () {
         [StorageController::class, 'getImage']
     )->name('storage.getImage');
 });
+
+Route::post('/ticket', [TicketController::class, 'create'])
+    ->name('tickets.create')
+    ->middleware('throttle:6,1');

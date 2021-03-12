@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\DataNotFound;
 use App\Services\ArticleService;
+use App\Services\CategoryService;
 use App\Services\PageService;
 use Exception;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -15,7 +17,7 @@ class HomeController extends Controller
     {
         $article_service = app(ArticleService::class);
         return view('pages.index', [
-            'latestArticles' => $article_service->latest(3),
+            'latestArticles' => $article_service->latest(6),
         ]);
     }
 
@@ -45,15 +47,24 @@ class HomeController extends Controller
         }
     }
 
-    public function getArticles(): View
+    public function getArticles(Request $request): View
     {
+        /**
+         * @var null|Illuminate\Database\Eloquent\Model
+         */
+        $category = $this->getCategoryByName($request->category);
+
         $article_service = app(ArticleService::class);
 
-        $articles = $article_service->listActiveArticles(9);
+        $articles = $article_service->listActiveArticles(
+            categoryId: $category->id ?? null,
+            name: $request->search,
+            paginatePerPage: 9
+        );
 
         return view('pages.articles', [
             'articles' => $articles,
-            'header' => 'News & Articles',
+            'header' => 'News & Articles' . (($category) ? ": $category->name" : null),
             'breadcrumb' => [
                 'Articles' => null,
             ],
@@ -83,6 +94,51 @@ class HomeController extends Controller
             abort(500);
 
         }
+    }
+
+    public function about(): View
+    {
+        return view('pages.about', [
+            'header' => 'About Me',
+            'breadcrumb' => [
+                'About Me' => null,
+            ],
+        ]);
+    }
+
+    public function contact(): View
+    {
+        return view('pages.contact', [
+            'header' => 'Contact Me',
+            'breadcrumb' => [
+                'Contact Me' => null,
+            ],
+        ]);
+    }
+
+    /**
+     * Get the category ID by name
+     * 
+     * @param string|null $categoryName
+     * 
+     * @return null|Illuminate\Database\Eloquent\Model
+     */
+    private function getCategoryByName(string|null $categoryName): mixed
+    {
+        $category = null;
+
+        if ($categoryName) {
+            try {
+
+                $category = app(CategoryService::class)
+                    ->findByName($categoryName);
+
+            } catch (DataNotFound $e) {
+                $category = null;
+            }
+        }
+
+        return $category;
     }
 
 }

@@ -15,6 +15,7 @@
     @include('partials.footer')
 
     <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/app.js"></script>
     @yield('scripts.end')
 
 </body>

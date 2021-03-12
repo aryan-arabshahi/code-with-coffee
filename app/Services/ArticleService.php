@@ -176,13 +176,26 @@ class ArticleService
      * Get the list of the enabled articles
      * 
      * @param int $paginatePerPage = 0 Use the default pagination as default
+     * @param int|null $categoryId = null Get all the categories if it's null
+     * @param string|null $name = null
      * 
      * @return LengthAwarePaginator
      */
-    public function listActiveArticles(int $paginatePerPage = 0): LengthAwarePaginator
+    public function listActiveArticles(
+        int $paginatePerPage = 0,
+        int|null $categoryId = null,
+        string|null $name = null
+    ): LengthAwarePaginator
     {
-        $this->debug('Getting the list of the enabled articles');
-        return $this->repository->listActiveArticles($paginatePerPage);
+        $this->debug('Getting the list of the enabled articles', [
+            'category_id' => $categoryId,
+            'name' => $name,
+        ]);
+        return $this->repository->listActiveArticles(
+            categoryId: $categoryId,
+            name: $name,
+            paginatePerPage: $paginatePerPage
+        );
     }
 
 }

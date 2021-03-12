@@ -13,7 +13,7 @@
             </h1>
             <p class="text-base text-center text-gray-desc">Create a graphical view for your application</p>
             <div class="text-center mt-5 text-base">
-                <a class="text-blue-500" href="#">Read more</a>
+                <a class="text-blue-500" href="{{route('home.articles', ['category' => 'Front-End'])}}">Read more</a>
             </div>
         </article>
         <article class="card-item card-item-with-icon card-backend">
@@ -22,7 +22,7 @@
             </h1>
             <p class="text-base text-center text-gray-desc">Create the Server-Side application</p>
             <div class="text-center mt-5 text-base">
-                <a class="text-blue-500" href="#">Read more</a>
+                <a class="text-blue-500" href="{{route('home.articles', ['category' => 'Back-End'])}}">Read more</a>
             </div>
         </article>
         <article class="card-item card-item-with-icon card-sysadmin">
@@ -31,7 +31,7 @@
             </h1>
             <p class="text-base text-center text-gray-desc">Deploy your code on server</p>
             <div class="text-center mt-5 text-base">
-                <a class="text-blue-500" href="#">Read more</a>
+                <a class="text-blue-500" href="{{route('home.articles', ['category' => 'DevOps'])}}">Read more</a>
             </div>
         </article>
     </div>

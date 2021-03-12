@@ -7,15 +7,17 @@
 
 @section('content')
 
+    @include('partials.navigation')
+
     @include('partials.headers.index')
 
-    @include('partials.sections.icon_box')
+    @include('partials.sections.categories')
 
-    @include('partials.sections.image_box')
+    @include('partials.sections.latest_articles')
 
-    @include('partials.sections.vertical_icon_list')
+    @include('partials.sections.projects')
 
-    @include('partials.sections.image_description')
+    @include('partials.sections.about')
 
     @include('partials.sections.contact')
 

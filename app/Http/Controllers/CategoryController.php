@@ -170,7 +170,7 @@ class CategoryController extends Controller
     public function get(string $id): JsonResponse
     {
         $response = new Response();
-        $this->debug('Getting the specified category');
+        $this->debug('Getting the specified category', ['id' => $id]);
 
         try {
 

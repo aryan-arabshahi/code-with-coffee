@@ -25,7 +25,7 @@ class BaseRepository implements EloquentRepositoryInterface
     function __construct(Model $model)
     {
         $this->model = $model;
-        $this->paginatePerPage = config('pagination.per_page');
+        $this->paginatePerPage = config('global.pagination_per_page');
     }
 
     /**
@@ -71,7 +71,13 @@ class BaseRepository implements EloquentRepositoryInterface
         }
         $this->debug('Getting the list of resources', ['with' => $with]);
 
-        return ($paginate > 0) ? $this->withRelations($with)->paginate($paginate) : $this->withRelations($with)->get();
+        $model = $this->withRelations($with)
+                    ->orderBy(
+                        $this->model->getKeyName(),
+                        'desc'
+                    );
+
+        return ($paginate > 0) ? $model->paginate($paginate) : $model->get();
     }
 
     /**

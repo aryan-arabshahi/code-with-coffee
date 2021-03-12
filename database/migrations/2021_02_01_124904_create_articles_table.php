@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->char('name', 60)->index();
-            $table->char('slug', 60)->uniqe();
+            $table->char('slug', 60)->unique();
             $table->foreignId('category_id');
             $table->longText('content');
             $table->char('description')->index();

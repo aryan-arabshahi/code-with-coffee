@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Category;
+use App\Services\CategoryService;
 use Tests\BaseTest;
 
 class CategoryTest extends BaseTest
@@ -63,7 +64,7 @@ class CategoryTest extends BaseTest
     }
 
     /**
-     * Delete the specified category.
+     * Get the specified category.
      *
      * @return void
      */
@@ -75,7 +76,7 @@ class CategoryTest extends BaseTest
     }
 
     /**
-     * Delete the specified category.
+     * Get the specified category.
      *
      * @return void
      */
@@ -106,6 +107,19 @@ class CategoryTest extends BaseTest
     {
         $response = $this->deleteJson(route('categories.delete', [-1]));
         $response->assertStatus(404);
+    }
+
+    /**
+     * Get a specified category by name
+     *
+     * @return void
+     */
+    public function test_get_category_by_name()
+    {
+        $category = Category::factory()->create();
+        $service = app(CategoryService::class);
+        $finded_category = $service->findByName($category->name);
+        $this->assertTrue(true);
     }
 
 }

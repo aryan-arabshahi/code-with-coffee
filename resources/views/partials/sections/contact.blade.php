@@ -5,18 +5,24 @@
             <div class="relative col-start-2 col-span-4 px-20">
                 <div class="border shadow-xl rounded-2xl p-6 px-8 bg-white">
                     <div class="text-2xl text-center mb-6">Let's talk about your idea</div>
-                    <form method="POST">
+                    <form class="ajax-form" method="POST" action="{{route('tickets.create')}}" clearForm="true">
                         <div class="form-row">
-                            <input type="text" name="name" class="input-default input-rounded" placeholder="Name">
+                            <input type="text" name="title" class="input-default input-rounded" placeholder="Name" autocomplete="off">
+                            <div class="form-errors" field="title"></div>
                         </div>
                         <div class="form-row">
-                            <input type="text" name="email" class="input-default input-rounded" placeholder="Email">
+                            <input type="text" name="email" class="input-default input-rounded" placeholder="Email" autocomplete="off">
+                            <div class="form-errors" field="email"></div>
                         </div>
                         <div class="form-row">
-                            <textarea class="input-default input-rounded h-40" placeholder="Message"></textarea>
+                            <textarea name="message" class="input-default input-rounded h-40" placeholder="Message" autocomplete="off"></textarea>
+                            <div class="form-errors" field="message"></div>
                         </div>
                         <div class="form-row text-center">
-                            <button class="btn-default btn-rounded m-auto mb-2 mt-8 w-56 text-lg">Submit Message</button>
+                            @include('partials.submit_button', [
+                                'class' => 'btn-default btn-rounded m-auto mb-2 mt-8 w-56 text-lg relative',
+                                'label' => 'Submit Message',
+                            ])
                         </div>
                     </form>
                 </div>

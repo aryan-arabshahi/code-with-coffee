@@ -63,17 +63,34 @@ class ArticleRepository extends BaseRepository implements ArticleRepositoryInter
      * Get the list of the enabled articles
      * 
      * @param int $paginatePerPage = 0 Use the default pagination as default
+     * @param string|null $categoryId = null Get all the categories if it's null
+     * @param string|null $name = null
      * 
      * @return LengthAwarePaginator
      */
-    public function listActiveArticles(int $paginatePerPage = 0): LengthAwarePaginator
+    public function listActiveArticles(
+        int $paginatePerPage = 0,
+        string|null $categoryId = null,
+        string|null $name = null
+    ): LengthAwarePaginator
     {
-        $this->debug('Getting the list of the enabled articles');
-        return $this->model
-            ->whereStatus(ArticleStatus::ENABLED)
-            ->paginate(
-                ($paginatePerPage) ? $paginatePerPage : $this->paginatePerPage
-            );
+        $this->debug('Getting the list of the enabled articles', [
+            'category_id' => $categoryId,
+            'name' => $name,
+        ]);
+        $query = $this->model->whereStatus(ArticleStatus::ENABLED);
+
+        if ($categoryId) {
+            $query->where('category_id', $categoryId);
+        }
+
+        if ($name) {
+            $query->where('name', 'LIKE', "%$name%");
+        }
+
+        return $query->paginate(
+            ($paginatePerPage) ? $paginatePerPage : $this->paginatePerPage
+        );
     }
 
 }

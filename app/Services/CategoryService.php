@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Traits\Logger;
+use Illuminate\Database\Eloquent\Model;
 use App\Interfaces\CategoryRepositoryInterface;
 
 class CategoryService
@@ -94,6 +95,21 @@ class CategoryService
         $this->debug('Getting the category', ['id' => $id]);
         $category = $this->repository->get($id);
         return (!$toArray) ? $category : $category->toArray();
+    }
+
+    /**
+     * Get a category by name
+     * 
+     * @param string $name
+     * 
+     * @return Model
+     * 
+     * @throws DataNotFound
+     */
+    public function findByName(string $name): Model
+    {
+        $this->debug('Getting the specified category', ['name' => $name]);
+        return $this->repository->findByName($name);
     }
 
 }

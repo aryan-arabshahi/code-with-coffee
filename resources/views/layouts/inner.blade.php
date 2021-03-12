@@ -10,12 +10,20 @@
 </head>
 <body>
 
+    @include('partials.navigation')
+
     @include('partials.headers.inner')
 
     @yield('content')
 
     @include('partials.footer')
 
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+    <script type="text/javascript">
+        // Change navigation bar with scroll
+        checkNavigationBar();
+    </script>
     @yield('scripts.end')
 
 </body>

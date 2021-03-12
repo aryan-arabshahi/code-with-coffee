@@ -17,7 +17,7 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->char('name', 60)->index();
-            $table->char('slug', 60)->uniqe();
+            $table->char('slug', 60)->unique();
             $table->longText('content');
             $table->char('description')->index();
             $table->char('status', 20)->default(PageStatus::PENDING)->index();

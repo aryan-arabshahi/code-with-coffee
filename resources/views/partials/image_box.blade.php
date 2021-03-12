@@ -4,7 +4,7 @@
         <h1 class="text-lg font-medium mb-2">
             {{$name}}
         </h1>
-        <p style="font-size: 15px;" class="text-gray-desc mt-2 leading-6">
+        <p class="summary-desc">
             {{$description}}
         </p>
         <div class="text-center mt-5">

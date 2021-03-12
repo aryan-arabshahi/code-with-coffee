@@ -4,16 +4,18 @@
     <section class="container m-auto mt-20">
         <div class="font-medium text-3xl text-center">Search For Article!</div>
         <div style="width: 520px;" class="input-with-icon bg-white relative mt-6 m-auto">
-            <input type="text" name="search" placeholder="Search for article">
-            <button class="text-purple-default text-xl absolute right-0 top-0 bottom-0 rounded-r-full px-4">
-                <i class="fa fa-search opacity-75"></i>
-            </button>
+            <form method="GET" action="{{route('home.articles')}}">
+                <input type="text" name="search" placeholder="Search for article" value="{{request()->search}}" autocomplete="off">
+                <button class="text-purple-default text-xl absolute right-0 top-0 bottom-0 rounded-r-full px-4">
+                    <i class="fa fa-search opacity-75"></i>
+                </button>
+            </form>
         </div>
         <div class="text-center mt-3 text-sm">
             <span class="text-gray-desc">Popular help topics:</span>
-            <a class="text-purple-default" href="/categories/Back-End">Back-End</a>,
-            <a class="text-purple-default" href="/categories/Front-End">Front-End</a>,
-            <a class="text-purple-default" href="/categories/DevOps">DevOps</a>
+            <a class="text-purple-default" href="{{route('home.articles', ['category' => 'Back-End'])}}">Back-End</a>,
+            <a class="text-purple-default" href="{{route('home.articles', ['category' => 'Front-End'])}}">Front-End</a>,
+            <a class="text-purple-default" href="{{route('home.articles', ['category' => 'DevOps'])}}">DevOps</a>
         </div>
     </section>
 
@@ -26,7 +28,7 @@
                     'image' => "{$article->image_url}/800/533",
                     'name' => $article->name,
                     'description' => $article->description,
-                    'link' => "/articles/" . Str::slug($article->name, '-'),
+                    'link' => route('home.article', [Str::slug($article->name, '-')]),
                 ])
 
             @endforeach
