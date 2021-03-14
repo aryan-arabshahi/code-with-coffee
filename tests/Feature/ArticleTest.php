@@ -150,17 +150,4 @@ class ArticleTest extends BaseTest
         $this->assertTrue(true);
     }
 
-    /**
-     * Get the list of the enabled articles
-     *
-     * @return void
-     */
-    public function test_list_by_category_id()
-    {
-        $article = Article::factory()->create();
-        $service = app(ArticleService::class);
-        $finded_article = $service->listByCategoryId($article->category->id);
-        $this->assertTrue(true);
-    }
-
 }

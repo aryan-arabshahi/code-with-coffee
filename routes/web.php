@@ -18,5 +18,5 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
 Route::get('/articles', [HomeController::class, 'getArticles'])->name('home.articles');
-Route::get('/articles/{name}', [HomeController::class, 'getArticle'])->name('home.article');
+Route::get('/articles/{slug}', [HomeController::class, 'getArticle'])->name('home.article');
 Route::get('/{slug}', [HomeController::class, 'getPage'])->name('home.page');

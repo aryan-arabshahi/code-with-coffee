@@ -7,6 +7,7 @@ use App\Enums\PageStatus;
 use App\Exceptions\DataNotFound;
 use App\Interfaces\PageRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PageService
 {
@@ -119,13 +120,29 @@ class PageService
     public function findBySlug(string $slug): Model
     {
         $this->debug('Getting the specified page', ['slug' => $slug]);
-        $article = $this->repository->findBySlug($slug);
+        $page = $this->repository->findBySlug($slug);
 
-        if ($article->status != PageStatus::ENABLED) {
+        if ($page->status != PageStatus::ENABLED) {
             throw new DataNotFound;
         }
 
-        return $article;
+        return $page;
+    }
+
+    /**
+     * Get the list of the enabled pages
+     * 
+     * @param int $paginatePerPage = 0 Use the default pagination as default
+     * 
+     * @return LengthAwarePaginator
+     */
+    public function listActivePages(int $paginatePerPage = 0): LengthAwarePaginator
+    {
+        $this->debug('Getting the list of the enabled pages');
+
+        return $this->repository->listActivePages(
+            paginatePerPage: $paginatePerPage
+        );
     }
 
 }

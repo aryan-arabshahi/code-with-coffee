@@ -124,4 +124,16 @@ class PageTest extends BaseTest
         $this->assertTrue(true);
     }
 
+    /**
+     * Get the list of the enabled pages
+     *
+     * @return void
+     */
+    public function test_list_active_pages()
+    {
+        $service = app(PageService::class);
+        $finded_article = $service->listActivePages();
+        $this->assertTrue(true);
+    }
+
 }
