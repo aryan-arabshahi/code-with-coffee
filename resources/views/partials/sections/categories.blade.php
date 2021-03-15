@@ -6,7 +6,7 @@
         </p>
     </header>
 
-    <div class="grid grid-cols-3 gap-4 mt-12">
+    <div class="px-4 sm:px-0 grid grid-cols-1 gap-4 mt-12 sm:grid-cols-2 lg:grid-cols-3">
         <article class="card-item card-item-with-icon card-frontend">
             <h1 class="text-xl font-medium text-center my-2 mt-4">
                 Front-End Development

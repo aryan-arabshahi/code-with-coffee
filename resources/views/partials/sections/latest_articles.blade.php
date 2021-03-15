@@ -1,6 +1,6 @@
 <section class="container relative m-auto py-10 mt-24">
     <h2 class="text-4xl text-center font-medium">Latest Articles</h2>
-    <div class="owl-carousel mt-10">
+    <div class="px-4 sm:px-0 owl-carousel mt-10">
 
         @foreach ($latestArticles as $article)
 

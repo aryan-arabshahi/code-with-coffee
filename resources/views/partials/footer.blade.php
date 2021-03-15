@@ -1,11 +1,12 @@
-<footer class="footer mt-24">
+<footer class="overflow-hidden footer mt-24">
     <div class="container m-auto">
-        <div class="grid grid-cols-3">
-            <div>
-                <div class="font-medium">
+        {{-- <div class="grid grid-cols-3"> --}}
+        <div class="flex flex-col flex-col-reverse lg:flex-row">
+            <div class="px-16 mt-10 lg:px-0 lg:mt-0 lg:w-4/12">
+                <div class="font-medium text-center lg:text-left">
                     If you are interested in technology, you can follow me on:
                 </div>
-                <ul class="flex mt-6">
+                <ul class="flex justify-center lg:justify-start mt-6">
                     <li>
                         <a class="icon-list-item" href="#">
                             <i class="fab fa-twitter"></i>
@@ -23,12 +24,12 @@
                     </li>
                     <li class="ml-4">
                         <a class="icon-list-item" href="#">
-                            <i class="fab fa-youtube"></i>
+                            <i class="fab fa-github"></i>
                         </a>
                     </li>
                 </ul>
             </div>
-            <div class="pl-24">
+            <div class="px-16 mt-10 lg:px-0 lg:mt-0 lg:w-4/12 lg:pl-24">
                 <div class="font-medium text-lg mb-2">Useful Links</div>
                 <ul class="useful-links">
                     <li>
@@ -45,7 +46,7 @@
                     </li>
                 </ul>
             </div>
-            <div>
+            <div class="px-16 mt-10 lg:px-0 lg:mt-0 lg:w-4/12">
                 <div class="font-medium text-lg mb-2">Newsletter</div>
                 <div>
                     Subscribe newsletter to get the latest updates:

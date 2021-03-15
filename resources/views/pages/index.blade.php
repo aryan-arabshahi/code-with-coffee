@@ -29,6 +29,17 @@
         $(document).ready(function(){
             $(".owl-carousel").owlCarousel({
                 margin: 30,
+                responsive:{
+                    0: {
+                        items:1,
+                    },
+                    640: {
+                        items: 2,
+                    },
+                    1024: {
+                        items: 3,
+                    },
+                },
             });
         });
     </script>

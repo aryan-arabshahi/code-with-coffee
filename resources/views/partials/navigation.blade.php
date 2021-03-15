@@ -1,4 +1,4 @@
-<nav id="navigation">
+<nav id="navigation" class="pl-6 sm:pl-0">
     <div class="container m-auto relative">
         <ul class="flex ml-12">
             <li><a href="/">Home</a></li>

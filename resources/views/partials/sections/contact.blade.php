@@ -1,8 +1,8 @@
 <section class="container relative m-auto py-10 mt-10">
     <h2 class="text-4xl text-center font-medium">Contact Me</h2>
-    <div class="px-32 mt-10">
-        <div class="grid grid-cols-6 gap-4">
-            <div class="relative col-start-2 col-span-4 px-20">
+    <div class="lg:px-32 mt-10">
+        <div style="max-width: 640px;" class="m-auto">
+            <div class="relative px-20">
                 <div class="border shadow-xl rounded-2xl p-6 px-8 bg-white">
                     <div class="text-2xl text-center mb-6">Let's talk about your idea</div>
                     <form class="ajax-form" method="POST" action="{{route('tickets.create')}}" clearForm="true">

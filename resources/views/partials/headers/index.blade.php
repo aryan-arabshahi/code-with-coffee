@@ -2,11 +2,11 @@
     <div id="section-top-container">
 
         <header class="parent-special-color text-center">
-            <h1 class="capitalize text-5xl font-medium">Convert Coffee Into Code!</h1>
-            <p class="text-2xl mt-1">Drink a cup of Coffee and start coding...</p>
+            <h1 class="capitalize text-4xl md:text-5xl font-medium">Convert Coffee Into Code!</h1>
+            <p class="text-xl md:text-2xl mt-1">Drink a cup of Coffee and start coding...</p>
         </header>
 
-        <div style="width: 800px; height: 350px;" class="relative m-auto">
+        <div style="height: 350px;" class="relative m-auto block hidden md:block">
             <div id="coffee-wrap">
                 <span class="stars star1"></span>
                 <span class="stars star2"></span>
