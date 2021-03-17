@@ -20,7 +20,7 @@
                         <a class="link-on-hover-item" href="{{route('home.page', ['the-code-with-coffee-project'])}}">CodeWithCoffee.Dev</a>
                     </h1>
                     <p class="text-sm text-gray-desc leading-6">
-                        The codewithcoffee.dev project that implemented with Laravel framework.
+                        The CodeWithCoffee project is a simple CMS based on the Laravel framework.
                     </p>
                 </article>
             </div>
