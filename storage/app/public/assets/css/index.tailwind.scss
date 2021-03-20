@@ -1,0 +1,155 @@
+a, button, input, textarea { outline: none !important; }
+body {
+    @apply text-black-default;
+    font-family: 'Poppins', sans-serif;
+}
+.parent-special-color:before {
+    position: absolute;
+    content: '';
+    background: linear-gradient(to right, rgba(144, 30, 193, 0.90) 0%, rgb(107, 73, 238, 0.90) 51%, rgba(144, 30, 193, 0.90) 100%);
+    background-size: auto;
+    background-size: 200% auto;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+#section-top-container {
+  padding-bottom: 96px;
+}
+#section-top-container:after {
+  content: url('../images/cloud.svg');
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -7px;
+}
+.card-backend:before {
+    background-image: url('../images/backend.png') !important;
+}
+.card-frontend:before {
+    background-image: url('../images/frontend.png') !important;
+}
+.card-sysadmin:before {
+    background-image: url('../images/sysadmin.png') !important;
+}
+.card-item-with-icon:before {
+    display: block;
+    content: '';
+    width: 128px;
+    height: 128px;
+    background-image: url('../images/backend.png');
+    background-size: 115px 115px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: auto;
+    margin-bottom: 18px;
+}
+.card-item {
+    @apply relative bg-white rounded shadow-lg border pb-4 pt-10 px-2;
+}
+.section-gray {
+    background: #f8f9fb;
+}
+.section-gray-top {
+    background-image: url('../images/section-gray-top.svg');
+    background-size: 100% 204px;
+    top: 0;
+    height: 180px;
+    z-index: 1;
+    margin-top: -1px;
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    transform: rotate(180deg);
+}
+.section-gray-bottom {
+    background-image: url('../images/section-gray-bottom.svg');
+    background-size: 100% 204px;
+    bottom: 0;
+    height: 180px;
+    z-index: 1;
+    margin-top: -1px;
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+}
+.btn-default {
+    @apply p-2 px-5 block rounded;
+    background-image: linear-gradient(to right, #901ec1 0%, #7450fe 51%, #901ec1 100%);
+    -webkit-transition: all 500ms;
+    transition: all 500ms;
+    background-size: 200% auto;
+    color: #fff !important;
+    -webkit-box-shadow: 0px 20px 30px 0px rgba(12, 0, 46, 0.1);
+    box-shadow: 0px 20px 30px 0px rgba(12, 0, 46, 0.1);
+}
+.btn-default:hover {
+    background-position: right center !important;
+}
+.btn-rounded {
+    @apply rounded-full inline-block;
+}
+.btn-lg {
+    @apply py-3;
+}
+.black-cover:before {
+    background: rgba(0,0,0,0.4);
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.floating {
+  animation-name: floating;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+} 
+@keyframes floating {
+  0% { transform: translate(0,  0px); }
+  50%  { transform: translate(0, 20px); }
+  100%   { transform: translate(0, -0px); }
+}
+.footer {
+    background: linear-gradient(to right, rgba(144, 30, 193, 1) 0%, rgb(107, 73, 238) 51%, rgba(144, 30, 193, 1) 100%);
+      background-size: auto;
+    background-size: 200% auto;
+    position: relative;
+    padding-top: 220px;
+    color: white;
+}
+.shape-top {
+    background-image: url("../images/footer.svg");
+    background-size: 100% 204px;
+    top: 0;
+    height: 180px;
+    z-index: 1;
+    margin-top: -1px;
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    transform: rotate(180deg);
+}
+.contact-form-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -11%;
+  z-index: -1;
+}
+.input-default {
+    @apply block w-full transition-all duration-300 border p-3 px-4 rounded;
+}
+.input-default:focus {
+    @apply border-purple-default;
+}
+.input-rounded {
+    @apply rounded-full;
+}
+textarea.input-default {
+    @apply rounded-xl resize-none;
+}
