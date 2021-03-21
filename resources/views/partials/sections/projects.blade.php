@@ -10,7 +10,7 @@
         <div class="mb-16 p-14 w-3/5 m-auto lg:w-1/2 lg:m-0">
             <img class="floating" src="/assets/images/sample-projects.png">
         </div>
-        <div class="lg:w-1/2 px-12">
+        <div class="px-4 sm:px-12 lg:w-1/2">
             <div class="flex mt-4 bg-white rounded shadow-lg shadow-red border p-2 link-on-hover">
                 <div class="h-24 w-1/4 flex">
                     <img class="block justify-center items-center m-auto w-16" src="/assets/images/laravel-logo.svg">

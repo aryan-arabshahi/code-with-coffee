@@ -3,7 +3,7 @@
         $breadcrumb_items_count = count($breadcrumb);
         $item_index = 1;
     @endphp
-    <ul class="breadcrumb-list cursor-default flex">
+    <ul class="breadcrumb-list cursor-default flex flex-wrap">
         <li class="breadcrumb-item">
             <a href="/">
                 <i class="fa fa-home mr-1"></i>

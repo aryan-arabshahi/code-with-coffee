@@ -8,7 +8,7 @@
                 'image' => "{$article->image_url}/800/533",
                 'name' => $article->name,
                 'description' => $article->description,
-                'link' => "/articles/" . Str::slug($article->name, '-'),
+                'link' => "/articles/" . generate_slug($article->name),
             ])
 
         @endforeach

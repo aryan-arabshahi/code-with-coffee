@@ -1,8 +1,7 @@
 <footer class="overflow-hidden footer mt-24">
     <div class="container m-auto">
-        {{-- <div class="grid grid-cols-3"> --}}
         <div class="flex flex-col flex-col-reverse lg:flex-row">
-            <div class="px-16 mt-10 lg:px-0 lg:mt-0 lg:w-4/12">
+            <div class="px-8 mt-10 sm:px-16 lg:px-0 lg:mt-0 lg:w-4/12">
                 <div class="font-medium text-center lg:text-left">
                     If you are interested in technology, you can follow me on:
                 </div>
@@ -29,7 +28,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="px-16 mt-10 lg:px-0 lg:mt-0 lg:w-4/12 lg:pl-24">
+            <div class="px-8 mt-10 sm:px-16 lg:px-0 lg:mt-0 lg:w-4/12 lg:pl-24">
                 <div class="font-medium text-lg mb-2">Useful Links</div>
                 <ul class="useful-links">
                     <li>
@@ -46,7 +45,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="px-16 mt-10 lg:px-0 lg:mt-0 lg:w-4/12">
+            <div class="px-8 mt-10 sm:px-16 lg:px-0 lg:mt-0 lg:w-4/12">
                 <div class="font-medium text-lg mb-2">Newsletter</div>
                 <div>
                     Subscribe newsletter to get the latest updates:

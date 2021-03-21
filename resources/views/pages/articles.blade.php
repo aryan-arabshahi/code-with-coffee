@@ -1,7 +1,7 @@
 @extends('layouts.inner')
 
 @section('content')
-    <section class="container m-auto mt-20">
+    <section class="px-4 container m-auto mt-20 sm:px-0">
         <div class="font-medium text-3xl text-center">Search For Article!</div>
         <div style="max-width: 520px;" class="input-with-icon bg-white relative mt-6 m-auto">
             <form method="GET" action="{{route('home.articles')}}">
@@ -29,7 +29,7 @@
                     'image' => "{$article->image_url}/800/533",
                     'name' => $article->name,
                     'description' => $article->description,
-                    'link' => route('home.article', [Str::slug($article->name, '-')]),
+                    'link' => route('home.article', [generate_slug($article->name)]),
                 ])
 
             @endforeach

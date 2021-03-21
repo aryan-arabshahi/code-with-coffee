@@ -1,5 +1,5 @@
-<div class="flex mb-10 border-b pb-6">
-    <div class="w-1/2">
+<div class="block mb-10 border-b pb-6 sm:flex">
+    <div class="sm:w-1/2">
         <div class="author-info relative py-1">
             <img class="block w-16 h-16 rounded-full absolute left-0 top-0 shadow" src="/assets/images/me.jpg">
             <div class="pl-20">
@@ -8,7 +8,7 @@
             </div>
         </div>
     </div>
-    <div class="w-1/2 flex flex-row-reverse">
+    <div class="mt-8 flex sm:flex-row-reverse sm:mt-0 sm:w-1/2">
         <div class="text-gray-desc flex items-center">
             <span class="font-semibold">Share:</span>
             <ul class="flex">

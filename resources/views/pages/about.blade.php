@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <section class="container m-auto mt-16">
+    <section class="px-6 container m-auto mt-16 sm:px-0">
         <img style="width: 180px;" class="m-auto border rounded-full" src="/assets/images/me.jpg" alt="Aryan Arabshahi">
         <div class="page-content text-gray-desc mt-8">
             I'm Aryan Arabshahi.

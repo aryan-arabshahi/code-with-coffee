@@ -2,7 +2,7 @@
     <h2 class="text-4xl text-center font-medium">Contact Me</h2>
     <div class="lg:px-32 mt-10">
         <div style="max-width: 640px;" class="m-auto">
-            <div class="relative px-20">
+            <div class="relative px-6 sm:px-20">
                 <div class="border shadow-xl rounded-2xl p-6 px-8 bg-white">
                     <div class="text-2xl text-center mb-6">Let's talk about your idea</div>
                     <form class="ajax-form" method="POST" action="{{route('tickets.create')}}" clearForm="true">
@@ -26,7 +26,7 @@
                         </div>
                     </form>
                 </div>
-                <img class="contact-form-bg" src="/assets/images/contact-form.png">
+                <img class="hidden contact-form-bg sm:block" src="/assets/images/contact-form.png">
             </div>
         </div>
     </div>
