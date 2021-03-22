@@ -30393,9 +30393,17 @@ body {
 
 #navigation li a {
   display: block;
-  padding: 1.25rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+#navigation-bars {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 1.875rem;
+  padding: 1rem;
+  cursor: pointer;
 }
 
 .inner-header {

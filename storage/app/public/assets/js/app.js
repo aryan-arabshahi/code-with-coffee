@@ -137,3 +137,18 @@ $('.ajax-form').on('submit', function(e) {
     const form = new FormManager(e.target);
     form.submit();
 });
+
+$('#navigation-bars').on('click', function(e) {
+    const rotate_class_name = '-rotate-90';
+    const is_open = $(this).attr('is-open');
+    const menu = $('#navigation-menu');
+    if (is_open === 'true') {
+        $(this).removeClass(rotate_class_name);
+        menu.slideUp(300);
+        $(this).attr('is-open', 'false');
+    }else{
+        $(this).addClass(rotate_class_name);
+        menu.slideDown(300);
+        $(this).attr('is-open', 'true');
+    }
+});
