@@ -4,7 +4,7 @@ return [
     'header' => [
         'title' => [
             config('app.name'),
-            'Computer Programming News',
+            'Computer Programming News & Articles',
         ],
         'description' => 'Browse computer programming news, research and codes from the Code With Coffee',
     ],
