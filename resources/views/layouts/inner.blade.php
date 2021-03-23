@@ -3,10 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ ($site_description) ?? __('app.header.description') }}">
     <link rel="stylesheet" href="/assets/css/style.css">
     @yield('styles')
     @yield('scripts.start')
-    <title>{{ ($title) ?? config('app.name') }}</title>
+    <title>{{ get_site_title(($site_title) ?? __('app.header.title'), appendAppName: false) }}</title>
 </head>
 <body>
 

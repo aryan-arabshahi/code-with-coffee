@@ -32,3 +32,11 @@ if (!function_exists('humanize_date')) {
         return $date->format($format);
     }
 }
+
+if (!function_exists('get_site_title')) {
+    function get_site_title(string|array $data, bool $appendAppName = true): string
+    {
+        $result = (is_array($data)) ? implode(' | ', $data) : $data;
+        return (!$appendAppName) ? $result : implode(' | ', [$result, config('app.name')]);
+    }
+}

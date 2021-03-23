@@ -29,6 +29,8 @@ class HomeController extends Controller
             $article = $article_service->findBySlug($slug);
 
             return view('pages.article', [
+                'site_title' => get_site_title($article->name),
+                'site_description' => $article->description,
                 'article' => $article,
                 'breadcrumb' => [
                     'Articles' => route('home.articles'),
@@ -62,9 +64,13 @@ class HomeController extends Controller
             paginatePerPage: 9
         );
 
+        $page_title = __('app.pages.articles.title') . (($category) ? ": $category->name" : null);
+
         return view('pages.articles', [
+            'site_title' => get_site_title($page_title),
+            'site_description' => __('app.pages.articles.description'),
             'articles' => $articles,
-            'header' => 'News & Articles' . (($category) ? ": $category->name" : null),
+            'header' => $page_title,
             'breadcrumb' => [
                 'Articles' => null,
             ],
@@ -79,6 +85,8 @@ class HomeController extends Controller
             $page = $page_service->findBySlug($slug);
 
             return view('pages.page', [
+                'site_title' => get_site_title($page->name),
+                'site_description' => $page->description,
                 'page' => $page,
                 'breadcrumb' => [
                     $page->name => null,
@@ -98,8 +106,11 @@ class HomeController extends Controller
 
     public function about(): View
     {
+        $page_title = __('app.pages.about.title');
         return view('pages.about', [
-            'header' => 'About Me',
+            'site_title' => get_site_title($page_title),
+            'site_description' => __('app.pages.about.description'),
+            'header' => $page_title,
             'breadcrumb' => [
                 'About Me' => null,
             ],
@@ -108,8 +119,11 @@ class HomeController extends Controller
 
     public function contact(): View
     {
+        $page_title = __('app.pages.contact.title');
         return view('pages.contact', [
-            'header' => 'Contact Me',
+            'site_title' => get_site_title($page_title),
+            'site_description' => __('app.pages.contact.description'),
+            'header' => $page_title,
             'breadcrumb' => [
                 'Contact Me' => null,
             ],
