@@ -30389,6 +30389,7 @@ body {
   background-image: linear-gradient(to right, rgba(144, 30, 193, 0.90) 0%, rgba(116, 80, 254, 0.90) 51%, rgba(144, 30, 193, 0.90) 100%);
   background-size: 200% auto;
   font-size: 15px;
+  min-height: 61px;
 }
 
 #navigation li a {
