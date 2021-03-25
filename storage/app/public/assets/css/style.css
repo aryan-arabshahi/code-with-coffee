@@ -30506,7 +30506,12 @@ body {
 }
 
 .page-content {
-  line-height: 1.75rem;
+  line-height: 2rem;
+}
+
+.page-content ul {
+  list-style-type: disc;
+  padding-left: 50px;
 }
 
 .page-content a {
