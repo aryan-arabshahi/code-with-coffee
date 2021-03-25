@@ -6,7 +6,7 @@ class FormManager {
         this.submitButton = this.form.find('.form-submit-btn');
     }
 
-    getFormDataByElement = () => {
+    getFormDataByElement() {
         const data = {};
         this.form.serializeArray().map(function(field, index) {
             data[field.name] = field.value;
@@ -14,17 +14,17 @@ class FormManager {
         return data;
     }
 
-    lock = () => {
+    lock() {
         this.submitButton.attr('disabled', 'true');
         this.changeSubmitButton('pending');
     }
 
-    release = () => {
+    release() {
         this.submitButton.removeAttr('disabled');
         this.changeSubmitButton('clear');
     }
 
-    changeSubmitButton = (status) => {
+    changeSubmitButton(status) {
         switch(status) {
 
             case 'success':
@@ -51,7 +51,7 @@ class FormManager {
         }
     }
 
-    getErrorMessages = (errors) => {
+    getErrorMessages(errors) {
         const error_messages = [];
         errors.map(function(message, _index) {
             error_messages.push(
@@ -61,15 +61,13 @@ class FormManager {
         return error_messages.join('<br/>');
     }
 
-    onFail = (error) => {
-
+    onFail(error) {
         switch(error.status) {
             case 422:
                 const errors = error.responseJSON.errors;
                 const fields = Object.keys(errors);
                 for (let i = 0; i < fields.length; i++) {
                     const field = fields[i];
-                    console.log(this.form.find('.form-errors[field="'+field+'"]'));
                     this.form.find('.form-errors[field="'+field+'"]')
                         .html(
                             this.getErrorMessages(errors[field])
@@ -80,14 +78,13 @@ class FormManager {
         }
 
         this.release();
-
     }
 
-    onSuccess = (response) => {
+    onSuccess(response) {
         this.success();
     }
 
-    success = () => {
+    success() {
         this.clear();
         this.changeSubmitButton('success');
         if (this.form.attr('clearForm') === 'true') {
@@ -95,11 +92,11 @@ class FormManager {
         }
     }
 
-    clear = () => {
+    clear() {
         this.form.find('.form-errors').hide().html('');
     }
 
-    submit = () => {
+    submit() {
         this.clear()
         this.lock();
         $.ajax({
@@ -108,8 +105,12 @@ class FormManager {
             data: this.getFormDataByElement(),
             dataType: 'json',
         })
-        .done(this.onSuccess)
-        .fail(this.onFail);
+        .done((response) => {
+            this.onSuccess(response);
+        })
+        .fail((error) => {
+            this.onFail(error);
+        });
     }
 
 }
