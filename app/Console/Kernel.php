@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command(new GenerateSitemap)->daily();
+        $schedule->job(new GenerateSitemap)->daily();
     }
 
     /**

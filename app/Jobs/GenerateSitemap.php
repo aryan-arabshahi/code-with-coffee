@@ -20,16 +20,9 @@ class GenerateSitemap implements ShouldQueue
      */
     protected $service;
 
-    /**
-     * Create a new job instance.
-     * 
-     * @param \App\Services\SitemapService $service
-     * 
-     * @return void
-     */
-    public function __construct(SitemapService $service)
+    public function __construct()
     {
-        $this->service = $service;
+        $this->service = app(SitemapService::class);
     }
 
     /**
