@@ -16,7 +16,7 @@
         </div>
 
         <div class="mt-8">
-            <div class="timeline">
+            <div class="timeline leading-7">
 
                 <div class="timeline__event animated flipInX">
                     <div class="timeline__event__date bg-purple-default text-white font-medium text-lg">
