@@ -121,7 +121,9 @@ class FormManager {
 function checkNavigationBar() {
     const navigation = $('#navigation');
     const setBackground = () => {
-        if ($(this).scrollTop() === 0) {
+        if ($(window).width() < 640) {
+            return;
+        } else if ($(this).scrollTop() === 0) {
             navigation.css('background', 'none');
         }else{
             navigation.removeAttr('style');
