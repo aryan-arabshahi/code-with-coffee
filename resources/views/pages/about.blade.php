@@ -58,7 +58,7 @@
                         </div>
                         <div style="font-size: 15px; margin-top: 6px;" class="timeline__event__description text-gray-desc">
                             Worked as a full-stack developer on various projects as the team lead.
-                            The most important one is an online SMS provider implemented with PHP and Python.
+                            The most important one is an online SMS service implemented with PHP and Python.
                         </div>
                     </div>
                 </div>
