@@ -11,3 +11,11 @@
         </div>
     </section>
 @endsection
+
+@section('scripts.start')
+    <link rel="stylesheet" type="text/css" href="/assets/js/prism/prism.css">
+@endsection
+
+@section('scripts.end')
+    <script type="text/javascript" src="/assets/js/prism/prism.js"></script>
+@endsection

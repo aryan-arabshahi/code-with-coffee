@@ -30520,6 +30520,13 @@ body {
   color: rgba(144, 30, 193, var(--text-opacity));
 }
 
+figure.image img {
+  /* CkEditor InsertImage plugin */
+  display: block;
+  margin: auto;
+  max-width: 890px;
+}
+
 /* Inner */
 
 .link-on-hover:hover .link-on-hover-item {
