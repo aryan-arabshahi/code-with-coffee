@@ -30520,11 +30520,24 @@ body {
   color: rgba(144, 30, 193, var(--text-opacity));
 }
 
+.page-content h4 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 15px;
+  margin-bottom: 8px;
+}
+
 figure.image img {
   /* CkEditor InsertImage plugin */
   display: block;
   margin: auto;
   max-width: 890px;
+  width: 100%;
+}
+
+figure.image figcaption {
+  text-align: center;
+  font-size: 14px;
 }
 
 /* Inner */
