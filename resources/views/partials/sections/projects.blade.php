@@ -17,7 +17,7 @@
                 </div>
                 <article class="w-3/4 pr-4">
                     <h1 class="font-medium my-2 link-on-hover-item link-icon">
-                        <a href="{{route('home.page', ['fingerprint-sensor'])}}">FingerprintSensor</a>
+                        <a href="{{route('home.page', ['finger-reader'])}}">FingerReader</a>
                     </h1>
                     <p class="text-sm text-gray-desc leading-6">
                         The Python library for the R30x fingerprint series with multiple features.
