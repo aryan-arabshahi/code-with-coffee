@@ -20,7 +20,7 @@
                         <a href="{{route('home.page', ['finger-reader'])}}">FingerReader</a>
                     </h1>
                     <p class="text-sm text-gray-desc leading-6">
-                        The Python library for the R30x fingerprint series with multiple features.
+                        Python library for the R30x fingerprint series with multiple features.
                     </p>
                 </article>
             </div>
