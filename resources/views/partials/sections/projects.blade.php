@@ -13,11 +13,24 @@
         <div class="px-4 sm:px-12 lg:w-1/2">
             <div class="flex mt-4 bg-white rounded shadow-lg shadow-red border p-2 link-on-hover">
                 <div class="h-24 w-1/4 flex">
+                    <img class="block justify-center items-center m-auto w-16" src="/assets/images/fingerprint-scan.png">
+                </div>
+                <article class="w-3/4 pr-4">
+                    <h1 class="font-medium my-2 link-on-hover-item link-icon">
+                        <a href="{{route('home.page', ['fingerprint-sensor'])}}">FingerprintSensor</a>
+                    </h1>
+                    <p class="text-sm text-gray-desc leading-6">
+                        The Python library for the R30x fingerprint series with multiple features.
+                    </p>
+                </article>
+            </div>
+            <div class="flex mt-4 bg-white rounded shadow-lg shadow-red border p-2 link-on-hover">
+                <div class="h-24 w-1/4 flex">
                     <img class="block justify-center items-center m-auto w-16" src="/assets/images/laravel-logo.svg">
                 </div>
                 <article class="w-3/4 pr-4">
-                    <h1 class="font-medium my-2">
-                        <a class="link-on-hover-item" href="{{route('home.page', ['the-code-with-coffee-project'])}}">CodeWithCoffee.Dev</a>
+                    <h1 class="font-medium my-2 link-on-hover-item link-icon">
+                        <a href="{{route('home.page', ['the-code-with-coffee-project'])}}">CodeWithCoffee.Dev</a>
                     </h1>
                     <p class="text-sm text-gray-desc leading-6">
                         The CodeWithCoffee project is a simple CMS based on the Laravel framework.
@@ -52,28 +65,6 @@
                     <h1 class="font-medium my-2">DevOpsUtils</h1>
                     <p class="text-sm text-gray-desc leading-6">
                         A helper tool for the system administrators. The SSL checker, Notifier, and some other helper tools.
-                    </p>
-                </article>
-                <div style="background: rgba(255,255,255,0.85);" class="absolute left-0 right-0 top-0 bottom-0 rounded">
-                    <div class="flex h-full items-center justify-center text-xl text-gray-desc">
-                        Coming Soon...
-                    </div>
-                </div>
-            </div>
-            <div class="flex mt-4 bg-white rounded shadow-lg shadow-red border p-2 relative">
-                <div class="h-24 w-1/4 flex">
-                    <div class="m-auto">
-                        <svg width="89" height="32" viewBox="0 0 89 32" xmlns="http://www.w3.org/2000/svg">
-                            <g fill="currentColor" fill-rule="evenodd">
-                                <path d="M28.487 0L15.42 3.405l-1.933 3.318-3.924-.029L0 15.995l9.564 9.3 3.922-.03 1.938 3.317 13.063 3.405 3.5-12.702-1.989-3.29 1.989-3.29L28.487 0zM13.802 7.257l9.995-2.498-5.737 9.665H6.584l7.218-7.167zm0 17.474l-7.218-7.166H18.06l5.737 9.664-9.995-2.498zm12.792.927l-5.74-9.663 5.74-9.667 2.771 9.667-2.771 9.663zM58.123 9.424c-1.746 0-2.918.723-3.791 2.095h-.075V9.773h-3.055v12.795h3.13V15.31c0-1.746 1.097-2.943 2.594-2.943 1.421 0 2.48.843 2.48 2.345v7.856h3.131v-8.355c0-2.794-1.77-4.789-4.414-4.789M46.44 17.15c0 1.696-.973 2.893-2.57 2.893-1.446 0-2.356-.823-2.356-2.32V9.767h-3.13v8.53c0 2.793 1.596 4.614 4.44 4.614 1.795 0 2.793-.673 3.666-1.845h.074v1.496h3.01V9.767H46.44v7.383M64.178 22.568h3.131V9.773h-3.13zM64.178 8.354h3.131V5.783h-3.13zM85.002 9.773l-1.86 5.761c-.4 1.173-.748 2.794-.748 2.794h-.08s-.424-1.621-.823-2.794l-2.1-5.76h-3.347l3.442 9.102c.723 1.946.972 2.769.972 3.467 0 1.048-.548 1.746-1.895 1.746h-1.197v2.669h1.995c2.594 0 3.494-1.023 4.467-3.866l4.511-13.119h-3.337M73.142 18.802v-6.784h1.995V9.773h-1.995v-3.99h-3.11v3.99h-1.77v2.245h1.77v7.507c0 2.42 1.822 3.068 3.468 3.068 1.346 0 1.712-.05 1.712-.05v-2.474s-.374.005-.798.005c-.749 0-1.272-.325-1.272-1.272"></path>
-                            </g>
-                        </svg>
-                    </div>
-                </div>
-                <article class="w-3/4 pr-4">
-                    <h1 class="font-medium my-2">Rundo</h1>
-                    <p class="text-sm text-gray-desc leading-6">
-                        A simple multiplayer game using the WebSocket with Python as the socket server.
                     </p>
                 </article>
                 <div style="background: rgba(255,255,255,0.85);" class="absolute left-0 right-0 top-0 bottom-0 rounded">
